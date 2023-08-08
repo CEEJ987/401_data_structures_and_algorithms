@@ -1,60 +1,104 @@
-amespace CodeChallenges
+namespace CodeChallenges 
 {
-  public class LinkedList
-  {
-    public Node Head { get; set; }
+  /* public class LinkedList
+   {
+       // public Node Head {get; set;}
 
-    public LinkedList()
-    {
-      Head = null;
+   }
 
-    }
+   public class Node
+   {
 
-    public void Insert(int value)
-    {
-      Node newNode = new Node(value);
-      newNode.Next = Head;
-      Head = newNode;
-    }
-
-    public bool Includes(int value)
-    {
-      Node current = Head;
-      while (current != null)
-      {
-        if (current.Value == value)
-          return true;
-        current = current.Next;
-      }
-      return false;
-    }
-
-    public override string ToString()
-    {
-      if (Head == null)
-        return "NULL";
-
-      Node current = Head;
-      string result = "";
-      while (current != null)
-      {
-        result += $"{current.Value} -> ";
-        current = current.Next;
-      }
-      result += "NULL";
-      return result;
-    }
-  }
+   }*/
 
   public class Node
   {
+    public Node? Next { get; set; }
     public int Value { get; set; }
-    public Node Next { get; set; }
+
+
+
+    public Node Last { get; set; }
 
     public Node(int value)
     {
       Value = value;
       Next = null;
+      Last = null;
     }
   }
+
+
+  public class LinkedList
+
+  {
+    public Node? Head { get; set; }
+
+    public Node Tail { get; set; }
+    //Miles "Tails" Prower
+    public Node CurrentNode { get; set; }
+
+    public LinkedList()
+    {
+      Head = null;
+    }
+
+    public void Insert(int value)
+    {
+
+      Node newNode = new Node(value);
+
+      if (Head == null)
+      {
+
+        Head = newNode;
+
+      }
+      else
+      {
+
+        newNode.Next = Head;
+        Head = newNode;
+
+      }
+
+
+
+
+
+
+    }
+
+    public bool Includes(int value)
+    {
+      bool foundValue = false;
+      Node currentNode = Head;
+      while (currentNode != null)
+      {
+        if (currentNode.Value == value)
+        {
+          foundValue = true;
+
+        }
+        currentNode = currentNode.Next;
+      }
+      return foundValue;
+    }
+
+
+    public string ToString()
+    {
+      string listString = "";
+      Node currentNode = Head;
+
+      while (currentNode != null)
+      {
+        listString += String.Format("{0} -> ", currentNode.Value);
+        currentNode = currentNode.Next;
+      }
+
+      return listString + "NULL";
+    }
+  }
+
 }
