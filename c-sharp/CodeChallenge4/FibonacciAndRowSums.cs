@@ -1,39 +1,46 @@
-using System.Security.Cryptography;
-
-namespace CodeChallenges
+namespace CodeChallenges 
 {
-  public class CodeChallenge3
-  {
-    public static int BinarySearch(int[] array, int key)
+    public class CodeChallenge4
     {
-      int high = array.Length - 1;
-      int low = 0;
+        public static int GetNthNumberInFibonacciSequence(int nthNumberInSequence)
+        {
+      if (nthNumberInSequence <= 0)
+        throw new ArgumentException("The input should be a positive integer.", nameof(nthNumberInSequence));
 
-      while (low <= high)
+      if (nthNumberInSequence == 1 || nthNumberInSequence == 2)
+        return 1;
+
+      int previous = 1;
+      int current = 1;
+
+      for (int i = 3; i <= nthNumberInSequence; i++)
       {
-        int mid = low + (high - low) / 2;
+        int next = previous + current;
+        previous = current;
+        current = next;
+      }
+      return current;
+            int result = 0;
 
-        if (array[mid] == key)
-        {
-          // Check if the current mid is the first occurrence of the key
-          while (mid > 0 && array[mid - 1] == key)
-          {
-            mid--;
-          }
-          return mid;
+            return result;
         }
-        else if (array[mid] < key)
+
+        public static int[] RowSums(int[][] matrix)
         {
-          low = mid + 1;
-        }
-        else
+      int rows = matrix.Length;
+      int[] rowSums = new int[rows];
+
+      for (int i = 0; i < rows; i++)
+      {
+        int columns = matrix[i].Length;
+
+        for (int j = 0; j < columns; j++)
         {
-          high = mid - 1;
+          rowSums[i] += matrix[i][j];
         }
       }
+      return rowSums;
+        }
 
-     /* int foundElementIndex = -1;*/
-      return -1; // key isnt present in the array
     }
-  }
 }
